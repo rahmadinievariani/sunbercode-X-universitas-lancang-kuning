@@ -1,0 +1,60 @@
+1. MEMBUAT DATA BASE :
+CREATE DATABASE myshop;
+
+2. MEMBUAT TABEL 
+       USERS
+CREATE TABLE users(
+id INT( 8 ) PRIMARY KEY AUTO_INCREMENT ,
+name VARCHAR( 255 ) ,
+email VARCHAR( 255 ) ,
+PASSWORD VARCHAR( 255 )
+);
+
+		CATEGORIES
+CREATE TABLE categories(
+id INT( 8 ) PRIMARY KEY AUTO_INCREMENT ,
+name VARCHAR( 255 )
+);
+
+
+		ITEMS 
+CREATE TABLE items(
+id INT( 8 ) PRIMARY KEY AUTO_INCREMENT ,
+name VARCHAR( 255 ) ,
+description VARCHAR( 255 ) ,
+price INT( 8 ) ,
+stock INT( 8 ) ,
+categories_id INT( 8 ) ,
+FOREIGN KEY ( categories_id ) REFERENCES categories( id )
+);
+
+3. MEMASUKKAN DATA PADA TABEL
+	USERS:
+INSERT INTO users( name, email,PASSWORD ) VALUES ("rahma dini evariani", "rahmadinievariani0809@gamil.com", "1234567");
+
+	CATEGORIES:
+INSERT INTO categories( name ) VALUES ("gadget"), ("cloth"), ("men"), ("women"), ("branded");
+
+	items
+INSERT INTO items( name, description, price, stock, categories_id ) VALUES ("Sumsang b50", "hape keren dari merek sumsang", 4000000, 100, 1), ("Uniklooh", "baju keren dari brand ternama", 500000, 50, 2), ("IMHO Watch", "jam tangan anak yang jujur banget", 2000000, 10, 1
+);
+
+4. MENGAMBIL DATA DARI DATABASE
+
+A. MENGAMBIL DATA USERS KECUALI PASSWORD
+SELECT id, name, email FROM users;
+
+B. MENGAMBIL DATA ITEMS
+
+- query untuk mendapatkan data item pada table items yang memiliki harga di atas 1000000
+  SELECT *FROM items WHERE price >1000000;
+
+-ebuah query untuk mengambil data item pada table items yang memiliki name serupa atau mirip (like) dengan kata kunci
+SELECT * FROM items WHERE name LIKE "Uniklooh%";
+
+c.Menampilkan data items join dengan kategori
+SELECT items.name, items.description, items.price, items.stock, items.categories_id, categories.name FROM items INNER JOIN categories ON items.categories_id = categories.id
+ 
+
+5.Mengubah Data dari Database
+ UPDATE items SET price =2500000 WHERE id =1;
