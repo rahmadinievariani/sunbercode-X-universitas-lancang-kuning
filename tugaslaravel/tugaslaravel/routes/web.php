@@ -21,4 +21,10 @@ Route::get('/register', [RegisterController::class, 'form']);
 
 Route::post('/form', [RegisterController::class, 'hasil']);
 
+Route::get('data-table', function(){
+    return view('page.table');
+});
 
+Route::get('table', function(){
+    return view('page.table');
+});
